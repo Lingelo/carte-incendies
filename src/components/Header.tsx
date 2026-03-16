@@ -4,7 +4,7 @@ export function Header() {
       <svg
         viewBox="0 0 24 24"
         fill="none"
-        className="w-7 h-7 text-fire-600 shrink-0"
+        className="w-6 h-6 md:w-7 md:h-7 text-fire-600 shrink-0"
         aria-hidden="true"
       >
         <path
@@ -25,7 +25,7 @@ export function Header() {
           fill="currentColor"
         />
       </svg>
-      <h1 className="text-lg font-bold text-gray-900 whitespace-nowrap">
+      <h1 className="text-base md:text-lg font-bold text-gray-900 whitespace-nowrap">
         Carte des Incendies de Foret
       </h1>
     </div>

@@ -11,7 +11,7 @@ interface StatsBarProps {
 
 export function StatsBar({ totalFires, totalHa, largest, mostDept, mostCount }: StatsBarProps) {
   return (
-    <div className="glass rounded-lg shadow-lg px-3 py-2 flex flex-wrap items-center gap-4 text-sm">
+    <div className="glass rounded-lg shadow-lg px-3 py-2 grid grid-cols-2 md:flex md:flex-wrap md:items-center gap-x-4 gap-y-1 md:gap-4 text-xs md:text-sm">
       <Stat label="Incendies" value={formatNum(totalFires)} />
       <Stat label="Surface totale" value={formatHa(totalHa)} />
       <Stat

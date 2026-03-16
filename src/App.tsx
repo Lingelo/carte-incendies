@@ -1,13 +1,17 @@
+import { useState } from 'react';
 import { useData } from './hooks/useData.ts';
+import { timeAgo } from './utils/format.ts';
 import { MapView } from './components/MapView.tsx';
 import { Header } from './components/Header.tsx';
 import { Controls } from './components/Controls.tsx';
 import { StatsBar } from './components/StatsBar.tsx';
 import { Legend } from './components/Legend.tsx';
+import { AboutModal } from './components/AboutModal.tsx';
 
 function App() {
   const { fires, meta, loading, error, filters, setFilters, stats, allCauses } =
     useData();
+  const [showAbout, setShowAbout] = useState(false);
 
   if (loading) {
     return (
@@ -33,11 +37,11 @@ function App() {
       <MapView fires={fires} />
 
       {/* Top overlay */}
-      <div className="absolute top-3 left-3 right-3 z-[1000] flex flex-col gap-2">
-        <div className="flex flex-wrap items-start gap-2">
+      <div className="absolute top-2 left-2 right-2 md:top-3 md:left-3 md:right-3 z-[1000] flex flex-col gap-1.5 md:gap-2">
+        <div className="flex flex-wrap items-start gap-1.5 md:gap-2">
           <Header />
           {meta?.demo && (
-            <div className="glass rounded-lg shadow px-3 py-2 text-xs text-fire-700 font-medium">
+            <div className="glass rounded-lg shadow px-2 py-1 md:px-3 md:py-2 text-[10px] md:text-xs text-fire-700 font-medium">
               Donnees de demonstration
             </div>
           )}
@@ -58,9 +62,25 @@ function App() {
       </div>
 
       {/* Legend bottom-left */}
-      <div className="absolute bottom-6 left-3 z-[1000]">
+      <div className="absolute bottom-4 left-2 md:bottom-6 md:left-3 z-[1000]">
         <Legend />
       </div>
+
+      {/* Footer */}
+      <div className="absolute bottom-4 right-2 md:bottom-6 md:right-3 z-[1000] hidden md:flex items-center gap-2 glass rounded-lg px-3 py-1.5 text-[11px] text-gray-600 shadow-sm">
+        {meta?.generatedAt && <span>{timeAgo(meta.generatedAt)}</span>}
+        <button onClick={() => setShowAbout(true)} className="underline hover:text-gray-900">
+          A propos
+        </button>
+      </div>
+
+      {showAbout && (
+        <AboutModal
+          onClose={() => setShowAbout(false)}
+          lastUpdate={meta?.generatedAt}
+          isDemo={meta?.demo}
+        />
+      )}
     </div>
   );
 }

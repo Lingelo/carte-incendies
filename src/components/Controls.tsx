@@ -27,7 +27,7 @@ export function Controls({ filters, onChange, years, allCauses }: ControlsProps)
   };
 
   return (
-    <div className="glass rounded-lg shadow-lg p-3 flex flex-wrap items-center gap-3 text-sm">
+    <div className="glass rounded-lg shadow-lg p-2 md:p-3 flex flex-wrap items-center gap-2 md:gap-3 text-xs md:text-sm">
       {/* Year filter */}
       <div className="flex items-center gap-1.5">
         <label htmlFor="year-select" className="font-medium text-gray-700">
