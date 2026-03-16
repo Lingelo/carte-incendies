@@ -36,3 +36,13 @@ body,
   height: 100%;
   z-index: 0;
 }
+
+/* Push zoom controls below the top overlay */
+.leaflet-top.leaflet-left {
+  top: 140px;
+}
+@media (min-width: 768px) {
+  .leaflet-top.leaflet-left {
+    top: 120px;
+  }
+}
